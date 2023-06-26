@@ -17,26 +17,26 @@ resource "helm_release" "example" {
   create_namespace = var.create_namespace
 
   dynamic "set" {
-    
+
     for_each = var.set
-    
+
     content {
-      name = set.value.name
+      name  = set.value.name
       value = set.value.value
     }
-    
+
   }
-  
+
   dynamic "set" {
-  
-    for_each = { for k, v in toset(var.set_annotations) : k => v}
+
+    for_each = { for k, v in toset(var.set_annotations) : k => v }
     iterator = each
     content {
       name  = each.value
       value = aws_iam_role.irsa.arn
     }
   }
-  
+
   #   dynamic "set" {
   #   for_each = { for k, v in toset(var.set_irsa_names) : k => v if var.create && var.create_role }
   #   iterator = each

@@ -54,9 +54,9 @@ resource "aws_iam_role" "irsa" {
 }
 
 resource "aws_iam_policy" "this" {
-  name        = "eks-cluster-autoscaler-policy"
-  path        = "/"
-  policy      = data.aws_iam_policy_document.cluster_autoscaler_policy.json
+  name   = "eks-cluster-autoscaler-policy"
+  path   = "/"
+  policy = data.aws_iam_policy_document.cluster_autoscaler_policy.json
 }
 
 resource "aws_iam_role_policy_attachment" "this" {

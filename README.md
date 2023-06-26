@@ -1,23 +1,41 @@
-# terraform-aws-eks-addons
+```
+cluster_name      = "eks-cluster"
+oidc_provider_arn = "arn:aws:iam::391178969547:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/271D381BE8F9E7A4254F0DC708CC6015"
+irsa_role_name    = "ClusterAutoscalerIRSA"
+namespace         = "cluster-autoscaler"
+create_namespace  = true
+serviceaccount    = "cluster-autoscaler-sa"
+chart_repo        = "https://kubernetes.github.io/autoscaler"
+chart_name        = "cluster-autoscaler"
+release_name      = "cluster-autoscaler"
+chart_version     = "9.29.1"
 
-### EBS
-- https://github.com/andreswebs/terraform-aws-eks-ebs-csi-driver
+set = [
+  {
+    name  = "autoDiscovery.clusterName"
+    value = "eks-cluster_name"
+  },
+  {
+    name  = "awsRegion"
+    value = "ap-northeast-1"
+  },
+  {
+    name  = "rbac.serviceAccount.name"
+    value = "cluster-autoscaler-sa"
+  }
+]
 
-### Addons
-- https://github.com/shamimice03/terraform-on-aws-eks/blob/main/14-EBS-CSI-Install-Kubernetes-Storage/README.md
-- https://github.com/aws/eks-charts
-- https://github.com/aws-ia/terraform-aws-eks-blueprints
-- https://github.com/aws-ia/terraform-aws-eks-blueprints-addon
-- https://github.com/aws-ia/terraform-aws-eks-blueprints-addons
+set_annotations = ["rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"]
 
-### Helm
+# # Equivalent to the following but the ARN is only known internally to the module
+# set = [{
+#   name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+#   value = iam_role_arn.this[0].arn
+# }]
+```
 
-- https://registry.terraform.io/providers/hashicorp/helm/latest/docs#in-cluster-config
-
-
-### To-do
-1. Helm chart ebs csi installation
-2. Search for dynamic inventory
-3. Install using addon (EBS CSI)
-4. Learn helm dynamic way to provision other csi 
-5. IAM Policy to create policy
+- https://letsmake.cloud/eks-cluster-autoscaler
+- https://github.com/DNXLabs/terraform-aws-eks-cluster-autoscaler/blob/master/helm.tf
+- https://github.com/kubernetes/autoscaler/blob/master/charts/cluster-autoscaler/values.yaml
+- https://github.com/aws-ia/terraform-aws-eks-blueprints-addon/blob/main/main.tf
+- 
