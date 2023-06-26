@@ -1,6 +1,6 @@
 ```
 cluster_name      = "eks-cluster"
-oidc_provider_arn = "arn:aws:iam::391178969547:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/271D381BE8F9E7A4254F0DC708CC6015"
+oidc_provider_arn = "arn:aws:iam::391178969547:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/DF928045AFF0184B16D3EE5AC4E52B32"
 irsa_role_name    = "ClusterAutoscalerIRSA"
 namespace         = "cluster-autoscaler"
 create_namespace  = true
@@ -13,7 +13,7 @@ chart_version     = "9.29.1"
 set = [
   {
     name  = "autoDiscovery.clusterName"
-    value = "eks-cluster_name"
+    value = "eks-cluster"
   },
   {
     name  = "awsRegion"
@@ -25,13 +25,18 @@ set = [
   }
 ]
 
+
+# For adding annotations in the service-account 
 set_annotations = ["rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"]
 
-# # Equivalent to the following but the ARN is only known internally to the module
-# set = [{
+# # Internally used in following way:
+# set = [
+#  {
 #   name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-#   value = iam_role_arn.this[0].arn
-# }]
+#   value = <-IRSA-ARN->  
+#   }
+#  ]
+
 ```
 
 - https://letsmake.cloud/eks-cluster-autoscaler
