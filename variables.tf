@@ -44,7 +44,6 @@ variable "release_name" {
   description = "Helm Chart release name"
 }
 
-
 variable "chart_version" {
   type        = string
   default     = ""
