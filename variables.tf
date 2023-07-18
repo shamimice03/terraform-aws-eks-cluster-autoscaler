@@ -34,13 +34,13 @@ variable "role_policies" {
 
 variable "chart_name" {
   type        = string
-  default     = null
+  default     = "cluster-autoscaler"
   description = "Name of the Helm Chart"
 }
 
 variable "release_name" {
   type        = string
-  default     = null
+  default     = "cluster-autoscaler"
   description = "Helm Chart release name"
 }
 
@@ -53,13 +53,13 @@ variable "chart_version" {
 
 variable "chart_repo" {
   type        = string
-  default     = null
+  default     = "https://kubernetes.github.io/autoscaler"
   description = "Cluster Autoscaler repository name."
 }
 
 variable "create_namespace" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether to create Kubernetes namespace with name defined by `namespace`."
 }
 

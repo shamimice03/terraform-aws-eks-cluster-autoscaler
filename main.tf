@@ -5,10 +5,10 @@ locals {
 
 
 #######################################################################
-#                     Cluster Autoscaler
+#                     Cluster Autoscaler                              #
 #######################################################################
 
-resource "helm_release" "example" {
+resource "helm_release" "this" {
   name             = coalesce(var.release_name, var.chart_name)
   repository       = var.chart_repo
   chart            = var.chart_name
@@ -37,12 +37,4 @@ resource "helm_release" "example" {
     }
   }
 
-  #   dynamic "set" {
-  #   for_each = { for k, v in toset(var.set_irsa_names) : k => v if var.create && var.create_role }
-  #   iterator = each
-  #   content {
-  #     name  = each.value
-  #     value = aws_iam_role.this[0].arn
-  #   }
-  # }
 }
