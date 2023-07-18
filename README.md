@@ -4,7 +4,7 @@
 ```hcl
 module "cluster_autoscaler" {
   
-  source = "github.com/shamimice03/terraform-aws-eks-cluster-autoscaler"
+  source = "shamimice03/eks-cluster-autoscaler/aws"
   
   cluster_name      = "eks-cluster"
   oidc_provider_arn = "arn:aws:iam::391178969547:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/DF928045AFF0184B16D3EE5AC4E52B32"
