@@ -1,4 +1,10 @@
+## EKS Cluster Autoscaler
+### Usage:
 ```
+module "cluster_autoscaler" {
+  
+source = "github.com/shamimice03/terraform-aws-eks-cluster-autoscaler"
+
 cluster_name      = "eks-cluster"
 oidc_provider_arn = "arn:aws:iam::391178969547:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/DF928045AFF0184B16D3EE5AC4E52B32"
 irsa_role_name    = "ClusterAutoscalerIRSA"
@@ -27,7 +33,14 @@ set = [
 
 set_annotations = ["rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"]
 
-# For adding annotations in the service-account 
+}
+
+```
+
+### How `set_annotations` works:
+
+```
+# For adding annotations in the service-account ( set_annotations = ["rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"] )
 
 # # Internally used in following way:
 # set = [
