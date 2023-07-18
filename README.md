@@ -25,9 +25,9 @@ set = [
   }
 ]
 
+set_annotations = ["rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"]
 
 # For adding annotations in the service-account 
-set_annotations = ["rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"]
 
 # # Internally used in following way:
 # set = [
