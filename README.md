@@ -7,7 +7,7 @@ module "cluster_autoscaler" {
   source = "shamimice03/eks-cluster-autoscaler/aws"
   
   cluster_name      = "eks-cluster"
-  oidc_provider_arn = "arn:aws:iam::391178969547:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/DF928045AFF0184B16D3EE5AC4E52B32"
+  oidc_provider_arn = "arn:aws:iam::3213213213214:oidc-provider/oidc.eks.ap-northeast-1.amazonaws.com/id/DF928045AFF0184B16D3EE5AC4E52B32"
   irsa_role_name    = "ClusterAutoscalerIRSA"
   namespace         = "kube-system"
   create_namespace  = false
